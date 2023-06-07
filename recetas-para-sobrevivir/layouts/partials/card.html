@@ -1,0 +1,23 @@
+<a class="container" href="{{ .Permalink }}">
+  <div class="card">
+    <div class="card-image">
+      <figure class="image is-98x98">
+        <img alt="{{ . }}" src="{{ .Params.image }}">
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <p class="title is-4">{{ .Title }}</p>
+          <p class="subtitle is-6">{{ .Params.description }}</p>
+        </div>
+      </div>
+      <div class="content">
+        <div class="tags are-medium">
+          <span class="tag is-info">{{ .Params.category }}</span>
+          <span class="tag is-success is-light">{{ .Params.cook_time }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
