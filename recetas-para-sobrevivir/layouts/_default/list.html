@@ -1,33 +1,17 @@
 {{ define "main" }}
-<section class="section">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <h3 class="title">{{ humanize .Page.Title }}</h3>
-      </div>
-    </div>
-    <div class="columns is-centered">
-      <div class="column">
-        {{ range $index, $page := .Pages }}
-          {{ if eq (mod $index 4) 0 }}{{ partial "card.html" $page }}{{ end }}
-        {{ end }}
-      </div>
-      <div class="column">
-        {{ range $index, $page := .Pages }}
-          {{ if eq (mod $index 4) 1 }}{{ partial "card.html" $page }}{{ end }}
-        {{ end }}
-      </div>
-      <div class="column">
-        {{ range $index, $page := .Pages }}
-          {{ if eq (mod $index 4) 2 }}{{ partial "card.html" $page }}{{ end }}
-        {{ end }}
-      </div>
-      <div class="column">
-        {{ range $index, $page := .Pages }}
-          {{ if eq (mod $index 4) 3 }}{{ partial "box.html" $page }}{{ end }}
-        {{ end }}
-      </div>
+<div class="container mt-4">
+  <div class="columns is-centered">
+    <div class="column">
+      <nav class="breadcrumb is-medium" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="{{.Site.BaseURL}}">Tags</a></li>
+          <li class="is-active"><a href="#" aria-current="page">{{ humanize .Page.Title }}</a></li>
+        </ul>
+      </nav>
+      {{ range $index, $page := .Pages }}
+        {{ partial "article.html" $page}}
+      {{ end }}
     </div>
   </div>
-</section>
+</div>
 {{ end }}
