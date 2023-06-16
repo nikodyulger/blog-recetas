@@ -9,6 +9,7 @@
             <div class="media-content">
                 <p class="title is-4">{{ .Title }}</p>
                 <p class="subtitle is-6">{{ .Params.description }}</p>
+                <p class="subtitle is-7">{{  .Params.date | time.Format ":date_short"}}</p>
             </div>
             <div class="tags are-medium">
                 <span class="tag is-info">{{ .Params.categories }}</span>
