@@ -8,7 +8,7 @@ cook_time: " min"
 prep_time: " min"
 rating: 5 # sobre 5
 tags: [] 
-category: "" # Desayuno, Comida, Cena, Aperitivo
+categories: "" # Desayuno, Comida, Cena, Aperitivo
 ---
 
 ## Ingredientes
