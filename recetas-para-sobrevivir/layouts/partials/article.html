@@ -1,0 +1,19 @@
+<a class="container" href="{{ .Permalink }}">
+    <div class="box">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-64x64 is-3by4">
+                    <img src="{{ .Params.image }}" class="is-rounded">
+                </figure>
+            </div>
+            <div class="media-content">
+                <p class="title is-4">{{ .Title }}</p>
+                <p class="subtitle is-6">{{ .Params.description }}</p>
+            </div>
+            <div class="tags are-medium">
+                <span class="tag is-info">{{ .Params.categories }}</span>
+                <span class="tag is-success is-light">{{ .Params.cook_time }}</span>
+            </div>
+        </article>
+    </div>
+</a>
