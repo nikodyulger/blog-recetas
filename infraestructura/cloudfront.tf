@@ -21,10 +21,11 @@ resource "aws_cloudfront_distribution" "blog_distribution" {
   aliases = [
     var.blog_domain_name
   ]
-  enabled         = true
-  is_ipv6_enabled = true
-  price_class     = "PriceClass_100"
-  comment         = "CDN para el blog_bucket"
+  enabled             = true
+  is_ipv6_enabled     = true
+  price_class         = "PriceClass_100"
+  comment             = "CDN para el blog_bucket"
+  default_root_object = "index.html"
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
@@ -45,6 +46,10 @@ resource "aws_cloudfront_distribution" "blog_distribution" {
     default_ttl            = 3600
     max_ttl                = 86400
 
+    lambda_function_association {
+      event_type = "origin-request"
+      lambda_arn = aws_lambda_function.lambda_edge.qualified_arn
+    }
   }
 
   restrictions {
