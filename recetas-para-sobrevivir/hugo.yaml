@@ -8,7 +8,7 @@ taxonomies:
 deployment:
   targets:
     - name: aws-s3
-      URL: 's3://blog-recetas-para-sobrevir?region=eu-south-2'
+      URL: 's3://blog-recetas-para-sobrevivir?region=eu-south-2'
       cloudFrontDistributionID: E27B4SD2486EMR
   matchers:
     - pattern: ^.+\.(js|css|svg|ttf)$
