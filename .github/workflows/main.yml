@@ -1,0 +1,38 @@
+name: Hugo workflow build and deploy to S3
+
+on:
+  push:
+    paths:
+      - "content/**"
+      - "layouts/**"
+      - "static/**"
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Check out master
+        uses: actions/checkout@master
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::033617006106:role/github-actions
+          aws-region: eu-south-2
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+            hugo-version: 'latest'
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy to S3
+        run: hugo deploy --force --maxDeletes -1 --invalidateCDN
