@@ -1,7 +1,7 @@
 resource "aws_acm_certificate" "blog_ssl_certificate" {
 
   domain_name       = var.blog_domain_name
-  provider          = aws.us-east-1
+  provider          = aws.north_virginia_region
   validation_method = "DNS"
 
   lifecycle {
@@ -47,6 +47,6 @@ resource "aws_route53_record" "blog_distribution_domain" {
 
 resource "aws_acm_certificate_validation" "blog_ssl_cert_validation" {
   certificate_arn         = aws_acm_certificate.blog_ssl_certificate.arn
-  provider                = aws.us-east-1
+  provider                = aws.north_virginia_region
   validation_record_fqdns = [for record in aws_route53_record.blog_cert_val_record : record.fqdn]
 }
