@@ -9,13 +9,14 @@ on:
   pull_request:
     branches: [ master ]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
     name: Build and Deploy
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
     steps:
       - name: Check out master
         uses: actions/checkout@master
@@ -24,6 +25,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::033617006106:role/github-actions
+          role-session-name: GitHubActionsSession
           aws-region: eu-south-2
 
       - name: Setup Hugo
