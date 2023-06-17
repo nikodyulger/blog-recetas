@@ -1,0 +1,24 @@
+baseURL: https://recetas-para-sobrevivir.com
+languageCode: es
+title: Recetas para Sobrevivir
+
+taxonomies:
+  category: categories
+
+deployment:
+  targets:
+    - name: aws-s3
+      URL: 's3://blog-recetas-para-sobrevir?region=eu-south-2'
+      cloudFrontDistributionID: E27B4SD2486EMR
+  matchers:
+    - pattern: ^.+\.(js|css|svg|ttf)$
+      cacheControl: 'max-age=31536000, no-transform, public'
+      gzip: true
+    - pattern: ^.+\.(png|jpg)$
+      cacheControl: 'max-age=31536000, no-transform, public'
+      gzip: false
+    - pattern: ^sitemap\.xml$
+      contentType: application/xml
+      gzip: true
+    - pattern: ^.+\.(html|xml|json)$
+      gzip: true
