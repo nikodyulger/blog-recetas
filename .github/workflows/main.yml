@@ -6,7 +6,6 @@ on:
       - "content/**"
       - "layouts/**"
       - "static/**"
-  pull_request:
     branches: [ master ]
 
 permissions:
