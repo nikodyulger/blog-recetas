@@ -2,12 +2,6 @@ name: Hugo workflow build and deploy to S3
 
 on:
   push:
-    paths:
-      - "content/**"
-      - "layouts/**"
-      - "static/**"
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 permissions:
