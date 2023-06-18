@@ -29,3 +29,9 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Ignore public folder HUGO
+public
+
+# Temporary lock file while building
+.hugo_build.lock

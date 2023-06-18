@@ -1,0 +1,60 @@
+{{ define "main" }}
+<div class="container is-centered">
+  <div class="section">
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical">
+        <div class="tile">
+          <div class="tile is-parent is-vertical">
+            <article class="tile is-child">
+              <h1 class="title is-1">{{ .Title }}</h1>
+              <h2 class="subtitle is-3">
+                {{ .Params.description }}
+              </h2>
+              <div class="content">
+                <div class="columns">
+                  <div class="column">
+                    <div class="box has-text-justified">
+                      <span class="icon-text is-5">
+                        <span class="icon">
+                          <i class="fa fa-utensils"></i>
+                        </span>
+                        <span>Tiempo preparación <strong>{{ .Params.prep_time}}</strong></span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="box has-text-justified">
+                      <span class="icon-text is-5">
+                        <span class="icon">
+                          <i class="fa-solid fa-kitchen-set fa-lg"></i>
+                        </span>
+                        <span>Tiempo cocción <strong>{{ .Params.cook_time}} </strong></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tags are-medium">
+                  <span class="tag is-info">{{ humanize .Params.categories }}</span>
+                  {{ range .Params.tags }}
+                  <span class="tag">{{ humanize . }}</span>
+                  {{end}}
+                </div>
+                  {{ .Content }}
+              </div>
+            </article>
+          </div>
+          <div class="tile is-parent is-4">
+            <article class="tile is-child">
+              {{ with .Params.image }}
+              <figure class="image is-3by4">
+                <img alt="{{ . }}" src="{{ . }}">
+              </figure>
+              {{ end }}
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

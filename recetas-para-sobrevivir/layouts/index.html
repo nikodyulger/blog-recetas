@@ -1,0 +1,36 @@
+{{ define "main" }}
+<div class="container mt-4">
+  <div class="columns is-centered">
+    <div class="column">
+        <div class="tags are-large">
+          {{ range .Site.Taxonomies.categories }}
+          <a class="tag" href="{{ .Page.Permalink }}">{{ .Page.Title }}</a>
+          {{ end }}
+        </div>
+    </div>
+  </div>
+
+  <div class="columns is-centered">
+    <div class="column">
+      {{ range $index, $page := .Site.RegularPages }}
+        {{ if eq (mod $index 4) 0 }}{{ partial "card.html" $page }}{{ end }}
+      {{ end }}
+    </div>
+    <div class="column">
+      {{ range $index, $page := .Site.RegularPages }}
+        {{ if eq (mod $index 4) 1 }}{{ partial "card.html" $page }}{{ end }}
+      {{ end }}
+    </div>
+    <div class="column">
+      {{ range $index, $page := .Site.RegularPages }}
+        {{ if eq (mod $index 4) 2 }}{{ partial "card.html" $page }}{{ end }}
+      {{ end }}
+    </div>
+    <div class="column">
+      {{ range $index, $page := .Site.RegularPages }}
+        {{ if eq (mod $index 4) 3 }}{{ partial "card.html" $page }}{{ end }}
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}
