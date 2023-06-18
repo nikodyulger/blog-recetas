@@ -7,6 +7,8 @@ on:
       - "layouts/**"
       - "static/**"
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 permissions:
   id-token: write
@@ -18,7 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out master
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
+        with:
+          ref: master
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -27,6 +31,13 @@ jobs:
           role-session-name: GitHubActionsSession
           aws-region: eu-south-2
 
+      - name: Change directory and create public folder
+        run: |
+          pwd
+          cd recetas-para-sobrevivir
+          mkdir public
+          ls
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
@@ -34,6 +45,8 @@ jobs:
 
       - name: Build
         run: hugo --minify
+        working-directory: ./recetas-para-sobrevivir
 
       - name: Deploy to S3
         run: hugo deploy --force --maxDeletes -1 --invalidateCDN
+        working-directory: ./recetas-para-sobrevivir
